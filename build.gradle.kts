@@ -1,14 +1,10 @@
-//plugins {
-//    id("com.android.library") version "9.2.1"
-//    kotlin("plugin.serialization") version "2.3.20" apply false
-//    `maven-publish`
-//}
 
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.plugin.parcelize")
     kotlin("plugin.serialization")
-    `maven-publish`
+//    `maven-publish`
+    id("maven-publish")
 }
 
 kotlin { jvmToolchain(21) }
@@ -77,7 +73,7 @@ publishing {
         register<MavenPublication>("release") {
             groupId = "com.github.xilinjia"
             artifactId = "PodciniLib"
-            version = "1.0.0"
+            version = "1.0.1"
             afterEvaluate {
                 from(components["release"])
             }
