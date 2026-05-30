@@ -9,7 +9,7 @@ import kotlin.concurrent.atomics.AtomicLong
 import kotlin.concurrent.atomics.ExperimentalAtomicApi
 import kotlin.time.Clock
 
-const val PROVIDER_API_VERSION = 1
+const val PROVIDER_API_VERSION = 2
 
 fun nowInMillis(): Long = Clock.System.now().toEpochMilliseconds()
 
@@ -22,12 +22,6 @@ fun getEntityId(now: Long = nowInMillis()): Long {
         val next = if (now > last) now else last + 1
         if (lastId.compareAndSet(last, next)) return next
     }
-}
-
-enum class FeedType(name: String) {
-    RSS("rss"),
-    ATOM1("atom"),
-    YOUTUBE("YouTube")
 }
 
 enum class ShareType {

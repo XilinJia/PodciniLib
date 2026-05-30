@@ -6,6 +6,7 @@ import ac.mdiq.podcini.shared.VideoSpec;
 import ac.mdiq.podcini.shared.FeedIPC;
 
 interface Provider {
+    String feedType();
     boolean haveMultiQualities();
     boolean canHandleFeed(in String url);
     boolean canHandleUrl(in String url);
