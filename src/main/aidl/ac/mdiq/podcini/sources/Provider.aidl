@@ -15,14 +15,13 @@ interface Provider {
     boolean haveLikeCount();
     @nullable String getEpisodeDescription(in String url);
     String searcherTAG();
-    boolean isFeedAutoDownloadable(in String urlString);
     boolean canHandleSharedMedia(in String urlString);
     @nullable String getShareLogType();
     List<String> feedDomains();
     List<AudioSpec> getAudioSpecs(in EpisodeIPC media);
     List<VideoSpec> getVideoOnlySpecs(in EpisodeIPC media);
     List<VideoSpec> getVideoSpecs(in EpisodeIPC media);
-    List<String> feedsAtUrl(in String url_);
+    List<String> feedsTitlesAtUrl(in String url_);
     @nullable FeedIPC buildFeed(in String url, String feedSource, int index);
     List<EpisodeIPC> getEpisodes(in int total);
     @nullable FeedIPC downloadFeed(in String url, long lastUpdateTime, boolean fullUpdate, int limitEpisodesCount);
