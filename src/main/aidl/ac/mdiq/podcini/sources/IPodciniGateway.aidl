@@ -2,11 +2,10 @@ package ac.mdiq.podcini.sources;
 
 import ac.mdiq.podcini.sources.IFeedSearchProvider;
 import ac.mdiq.podcini.sources.Provider;
+import ac.mdiq.podcini.shared.ProviderAttrs;
 
 interface IPodciniGateway {
-    // Search is required, so no annotation needed
+    @nullable ProviderAttrs getAttributes();
     @nullable IFeedSearchProvider getSearchProvider();
-
-    // Playlist management is optional!
     @nullable Provider getProvider();
 }

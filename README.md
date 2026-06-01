@@ -24,19 +24,20 @@ In build.gradle:
 
 implement API:
 
+	interface IPodciniGateway {
+		@nullable ProviderAttrs getAttributes();
+		@nullable IFeedSearchProvider getSearchProvider();
+		@nullable Provider getProvider();
+	}
+
+	class XXXGateway: IPodciniGateway.Stub()
+
 	interface Provider {
-		String feedType();
-		boolean haveMultiQualities();
 		boolean canHandleFeed(in String url);
 		boolean canHandleUrl(in String url);
 		@nullable EpisodeIPC buildEpisode(in String url);
-		boolean haveViewCount();
-		boolean haveLikeCount();
 		@nullable String getEpisodeDescription(in String url);
-		String searcherTAG();
 		boolean canHandleSharedMedia(in String urlString);
-		@nullable String getShareLogType();
-		List<String> feedDomains();
 		List<AudioSpec> getAudioSpecs(in EpisodeIPC media);
 		List<VideoSpec> getVideoOnlySpecs(in EpisodeIPC media);
 		List<VideoSpec> getVideoSpecs(in EpisodeIPC media);
@@ -44,8 +45,8 @@ implement API:
 		@nullable FeedIPC buildFeed(in String url, String feedSource, int index);
 		List<EpisodeIPC> getEpisodes(in int total);
 		@nullable FeedIPC downloadFeed(in String url, long lastUpdateTime, boolean fullUpdate, int limitEpisodesCount);
-	}
-	
+	}	
+
 	class XXXProvider: Provider.Stub() { ... }
 	
 And optionally:

@@ -73,7 +73,7 @@ publishing {
         register<MavenPublication>("release") {
             groupId = "com.github.xilinjia"
             artifactId = "PodciniLib"
-            version = "1.0.3"
+            version = "1.0.4"
             afterEvaluate {
                 from(components["release"])
             }

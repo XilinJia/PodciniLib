@@ -7,6 +7,20 @@ import androidx.compose.runtime.setValue
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
+
+@Parcelize
+data class ProviderAttrs(
+    var name: String,
+    var apiVersion: Int,
+    var feedType: String,
+    var hasMultiQualities: Boolean,
+    var hasViewCount: Boolean,
+    var hasLikeCount: Boolean,
+    var searcherTAG: String,
+    var shareLogType: String,
+    var feedDomains: List<String>
+): Parcelable
+
 @Parcelize
 data class EpisodeIPC(
     var id: Long = 0L,
@@ -39,6 +53,7 @@ data class FeedIPC(
     var type: String? = null,
     var lastUpdateTime: Long = 0,
     var limitEpisodesCount: Int = 0,
+    var episodesDownloadable: Boolean = false,
     var episodes: MutableList<EpisodeIPC> = mutableListOf()
 ): Parcelable
 
