@@ -16,7 +16,7 @@ data class ProviderAttrs(
     var hasMultiQualities: Boolean,
     var hasViewCount: Boolean,
     var hasLikeCount: Boolean,
-    var searcherTAG: String,
+    var searcherTAG: String,    // TODO: not needed
     var shareLogType: String,
     var feedDomains: List<String>
 ): Parcelable
