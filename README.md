@@ -42,7 +42,7 @@ implement API:
 		List<VideoSpec> getVideoOnlySpecs(in EpisodeIPC media);
 		List<VideoSpec> getVideoSpecs(in EpisodeIPC media);
 		List<String> feedsTitlesAtUrl(in String url_);
-		@nullable FeedIPC buildFeed(in String url, String feedSource, int index);
+		@nullable FeedIPC buildFeed(in String url, int index);
 		@nullable FeedIPC feedToUpdate(in String url);
 		List<EpisodeIPC> getEpisodes(in int total);
 	}
