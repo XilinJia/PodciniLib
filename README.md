@@ -58,6 +58,6 @@ And optionally:
 		String lookupUrl(String url);
 	}
 	
-	class VistaGuideSearcher : IFeedSearchProvider.Stub() { ... }
+	class XXXSearcher : IFeedSearchProvider.Stub() { ... }
 	
 When ready to connect with Podcini.A, register at https://github.com/XilinJia/Podcini.A with a feedType string and a brief description of the app.
