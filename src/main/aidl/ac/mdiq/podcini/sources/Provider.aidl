@@ -17,5 +17,5 @@ interface Provider {
     List<String> feedsTitlesAtUrl(in String url_);
     @nullable FeedIPC buildFeed(in String url, int index);
     @nullable FeedIPC feedToUpdate(in String url);
-    List<EpisodeIPC> getEpisodes(in int total);
+    List<EpisodeIPC> getEpisodes(in int total, in long since);
 }
