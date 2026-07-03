@@ -57,13 +57,13 @@ buildscript {
 
 dependencies {
     implementation("androidx.core:core-ktx:1.19.0")
-    implementation("androidx.compose.runtime:runtime:1.11.3")
+    implementation("androidx.compose.runtime:runtime:1.11.4")
 
-    implementation("io.ktor:ktor-http:3.5.0")
-    implementation("io.ktor:ktor-client-core:3.5.0")
-    implementation("io.ktor:ktor-client-okhttp:3.5.0")
-    implementation("io.ktor:ktor-client-cio:3.5.0")
-    implementation("io.ktor:ktor-utils:3.5.0")
+    implementation("io.ktor:ktor-http:3.5.1")
+    implementation("io.ktor:ktor-client-core:3.5.1")
+    implementation("io.ktor:ktor-client-okhttp:3.5.1")
+    implementation("io.ktor:ktor-client-cio:3.5.1")
+    implementation("io.ktor:ktor-utils:3.5.1")
 
 }
 
