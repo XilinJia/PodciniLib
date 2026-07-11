@@ -6,11 +6,9 @@ import ac.mdiq.podcini.shared.VideoSpec;
 import ac.mdiq.podcini.shared.FeedIPC;
 
 interface Provider {
-    boolean canHandleFeed(in String url);
-    boolean canHandleUrl(in String url);
+    int canHandleUrl(in String url);
     @nullable EpisodeIPC buildEpisode(in String url);
     @nullable String getEpisodeDescription(in String url);
-    boolean canHandleSharedMedia(in String urlString);
     List<AudioSpec> getAudioSpecs(in EpisodeIPC media);
     List<VideoSpec> getVideoOnlySpecs(in EpisodeIPC media);
     List<VideoSpec> getVideoSpecs(in EpisodeIPC media);

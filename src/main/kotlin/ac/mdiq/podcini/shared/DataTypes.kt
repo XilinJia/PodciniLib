@@ -7,18 +7,17 @@ import androidx.compose.runtime.setValue
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
-
 @Parcelize
 data class ProviderAttrs(
     var name: String,
     var apiVersion: Int,
     var feedType: String,
     var hasMultiQualities: Boolean,
+    var hasSeparateAVs: Boolean,
+    var supportDonwload: Boolean,
     var hasViewCount: Boolean,
     var hasLikeCount: Boolean,
-    var searcherTAG: String,    // TODO: not needed
-    var shareLogType: String,
-    var feedDomains: List<String>
+    var shareLogType: String
 ): Parcelable
 
 @Parcelize

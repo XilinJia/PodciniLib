@@ -17,7 +17,7 @@ Add it in your root settings.gradle at the end of repositories:
 In build.gradle:
 	
 	dependencies {
-		        implementation 'com.github.XilinJia:PodciniLib:Tag'
+		implementation 'com.github.XilinJia:PodciniLib:Tag'
 	}
 	
 ### To develop a source server app:
@@ -33,11 +33,9 @@ implement API:
 	class XXXGateway: IPodciniGateway.Stub()
 
 	interface Provider {
-		boolean canHandleFeed(in String url);
-		boolean canHandleUrl(in String url);
+		int canHandleUrl(in String url);
 		@nullable EpisodeIPC buildEpisode(in String url);
 		@nullable String getEpisodeDescription(in String url);
-		boolean canHandleSharedMedia(in String urlString);
 		List<AudioSpec> getAudioSpecs(in EpisodeIPC media);
 		List<VideoSpec> getVideoOnlySpecs(in EpisodeIPC media);
 		List<VideoSpec> getVideoSpecs(in EpisodeIPC media);
