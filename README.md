@@ -27,6 +27,7 @@ implement API:
 	interface IPodciniGateway {
 		@nullable ProviderAttrs getAttributes();
 		@nullable IFeedSearchProvider getSearchProvider();
+		@nullable IMediaSearchProvider getMediaSearcher();
 		@nullable Provider getProvider();
 	}
 
@@ -58,4 +59,13 @@ And optionally:
 	
 	class XXXSearcher : IFeedSearchProvider.Stub() { ... }
 	
+	interface IMediaSearchProvider {
+		String getName();
+		List<EpisodeIPC> searchQuick(String query);
+		List<EpisodeIPC> search(String query, int limit);
+		List<EpisodeIPC> getMoreItems();
+	}
+
+	class YYYSearcher : IMediaSearchProvider.Stub() { ... }
+
 When ready to connect with Podcini.A, register at https://github.com/XilinJia/Podcini.A with a feedType string and a brief description of the app.

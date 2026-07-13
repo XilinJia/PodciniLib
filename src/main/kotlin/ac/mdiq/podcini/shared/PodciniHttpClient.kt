@@ -47,7 +47,6 @@ object PodciniHttpClient {
     val CredentialsKey = AttributeKey<HasCredentials>("Credentials")
 
     fun createKtorClient(): HttpClient {
-        Log.d(TAG, "Creating new instance of HTTP client")
         val client = HttpClient(OkHttp) {
             install(DefaultRequest) {
                 header(HttpHeaders.UserAgent, USER_AGENT)

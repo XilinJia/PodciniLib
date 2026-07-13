@@ -9,7 +9,7 @@ import kotlin.concurrent.atomics.AtomicLong
 import kotlin.concurrent.atomics.ExperimentalAtomicApi
 import kotlin.time.Clock
 
-const val PROVIDER_API_VERSION = 7
+const val PROVIDER_API_VERSION = 8
 
 fun nowInMillis(): Long = Clock.System.now().toEpochMilliseconds()
 
@@ -68,6 +68,13 @@ interface FeedSearcher {
     suspend fun search(query: String): List<FeedSearchResult>
     suspend fun lookupUrl(url: String): String = url
     val name: String?
+}
+
+interface MediaSearcher {
+    val name: String
+    suspend fun searchQuick(query: String): List<EpisodeIPC>
+    suspend fun search(query: String, limit: Int): List<EpisodeIPC>
+    suspend fun getMoreItems(): List<EpisodeIPC>
 }
 
 abstract class BaseSearchProviderService : Service(), FeedSearcher {
