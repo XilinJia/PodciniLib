@@ -1,3 +1,6 @@
+# 1.1.1
+
+* added CloudSound in ShareType
 
 # 1.1.0
 

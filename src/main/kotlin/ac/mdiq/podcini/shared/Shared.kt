@@ -28,7 +28,8 @@ enum class ShareType {
     Text,
     YTMedia,
     Podcast,
-    PeerTubeMedia
+    PeerTubeMedia,
+    CloudSound
 }
 
 private const val AP_SUBSCRIBE = "podcini-subscribe://"     // TODO: appears not used
