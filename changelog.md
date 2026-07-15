@@ -1,3 +1,8 @@
+# 1.1.2
+
+* removed ShareType
+* amended data type ProviderAttrs
+
 # 1.1.1
 
 * added CloudSound in ShareType

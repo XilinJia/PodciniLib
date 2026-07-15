@@ -12,12 +12,12 @@ data class ProviderAttrs(
     var name: String,
     var apiVersion: Int,
     var feedType: String,
+    var hasVideo: Boolean,
     var hasMultiQualities: Boolean,
     var hasSeparateAVs: Boolean,
-    var supportDonwload: Boolean,
+    var supportDownload: Boolean,
     var hasViewCount: Boolean,
-    var hasLikeCount: Boolean,
-    var shareLogType: String
+    var hasLikeCount: Boolean
 ): Parcelable
 
 @Parcelize

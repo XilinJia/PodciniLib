@@ -9,7 +9,7 @@ import kotlin.concurrent.atomics.AtomicLong
 import kotlin.concurrent.atomics.ExperimentalAtomicApi
 import kotlin.time.Clock
 
-const val PROVIDER_API_VERSION = 8
+const val PROVIDER_API_VERSION = 9
 
 fun nowInMillis(): Long = Clock.System.now().toEpochMilliseconds()
 
@@ -22,14 +22,6 @@ fun getEntityId(now: Long = nowInMillis()): Long {
         val next = if (now > last) now else last + 1
         if (lastId.compareAndSet(last, next)) return next
     }
-}
-
-enum class ShareType {
-    Text,
-    YTMedia,
-    Podcast,
-    PeerTubeMedia,
-    CloudSound
 }
 
 private const val AP_SUBSCRIBE = "podcini-subscribe://"     // TODO: appears not used
