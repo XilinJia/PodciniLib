@@ -1,6 +1,6 @@
 
 plugins {
-    id("com.android.library") version "9.2.1"
+    id("com.android.library") version "9.4.0"
     id("org.jetbrains.kotlin.plugin.parcelize") version "2.4.0"
     id("org.jetbrains.kotlin.plugin.serialization") version "2.4.0"
     id("maven-publish")
@@ -57,14 +57,12 @@ buildscript {
 
 dependencies {
     implementation("androidx.core:core-ktx:1.19.0")
-    implementation("androidx.compose.runtime:runtime:1.11.4")
+//     implementation("androidx.compose.runtime:runtime:1.12.1")
 
-    implementation("io.ktor:ktor-http:3.5.1")
-    implementation("io.ktor:ktor-client-core:3.5.1")
-    implementation("io.ktor:ktor-client-okhttp:3.5.1")
-    implementation("io.ktor:ktor-client-cio:3.5.1")
-    implementation("io.ktor:ktor-utils:3.5.1")
-
+    implementation("io.ktor:ktor-http:3.5.2")
+    implementation("io.ktor:ktor-client-core:3.5.2")
+    implementation("io.ktor:ktor-client-okhttp:3.5.2")
+    implementation("io.ktor:ktor-utils:3.5.2")
 }
 
 publishing {
@@ -72,7 +70,7 @@ publishing {
         register<MavenPublication>("release") {
             groupId = "com.github.xilinjia"
             artifactId = "PodciniLib"
-            version = "1.1.2"
+            version = "1.1.3"
             afterEvaluate {
                 from(components["release"])
             }

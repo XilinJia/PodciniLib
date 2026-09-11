@@ -1,3 +1,10 @@
+# 1.1.3
+
+* removed episodesDownloadable from FeedIPC
+* removed dependency on Compose runtime
+* gradle upped to 9.7.1 
+* upped some dependencies and removed some unused ones
+
 # 1.1.2
 
 * removed ShareType

@@ -1,9 +1,6 @@
 package ac.mdiq.podcini.shared
 
 import android.os.Parcelable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableLongStateOf
-import androidx.compose.runtime.setValue
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
@@ -52,7 +49,6 @@ data class FeedIPC(
     var type: String? = null,
     var lastUpdateTime: Long = 0,
     var limitEpisodesCount: Int = 0,
-    var episodesDownloadable: Boolean = false,
     var episodes: MutableList<EpisodeIPC> = mutableListOf()
 ): Parcelable
 
@@ -97,5 +93,5 @@ class FeedSearchResult(
 
     // feedId will be positive if already subscribed
     @IgnoredOnParcel
-    var feedId by mutableLongStateOf(0L)
+    var feedId: Long = 0L
 }
