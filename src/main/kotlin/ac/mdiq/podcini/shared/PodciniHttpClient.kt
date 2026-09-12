@@ -25,9 +25,6 @@ import kotlin.io.encoding.Base64
 
 const val USER_AGENT: String = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0"
 
-/**
- * Provides access to a HttpClient singleton.
- */
 object PodciniHttpClient {
     private val TAG: String = PodciniHttpClient::class.simpleName ?: "Anonymous"
 
@@ -50,7 +47,7 @@ object PodciniHttpClient {
         val client = HttpClient(OkHttp) {
             install(DefaultRequest) {
                 header(HttpHeaders.UserAgent, USER_AGENT)
-                header(HttpHeaders.Accept, "application/json")
+//                header(HttpHeaders.Accept, "application/json")    // TODO: test
                 attributes.getOrNull(CredentialsKey)?.let { creds ->
                     val user = creds.username.orEmpty()
                     val pass = creds.password.orEmpty()
@@ -71,9 +68,6 @@ object PodciniHttpClient {
                     retryOnConnectionFailure(true)
 //                     pingInterval(30, TimeUnit.SECONDS)
                     connectionPool(ConnectionPool(5, 2, TimeUnit.MINUTES))
-
-                    // Optional:
-                    //                    protocols(listOf(Protocol.HTTP_1_1))
 
                     // Debugging / diagnostics
                     eventListener(object : EventListener() {

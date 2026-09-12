@@ -1,5 +1,6 @@
 # 1.1.3
 
+* removed global setting of accepting json in ktor client
 * removed episodesDownloadable from FeedIPC
 * removed dependency on Compose runtime
 * gradle upped to 9.7.1 
