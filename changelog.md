@@ -1,3 +1,7 @@
+# 1.1.4
+
+* added CaptionSpec and getCaptionSpecs in API
+
 # 1.1.3
 
 * removed global setting of accepting json in ktor client

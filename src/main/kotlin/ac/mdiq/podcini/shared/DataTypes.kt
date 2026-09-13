@@ -53,6 +53,14 @@ data class FeedIPC(
 ): Parcelable
 
 @Parcelize
+class CaptionSpec(
+    var url: String,
+    var language: String? = null,
+    var mimeType: String? = null,
+    var suffix: String? = null
+): Parcelable
+
+@Parcelize
 class AudioSpec(
     var averageBitrate: Int = 0,
     var bitrate: Int = 0,
