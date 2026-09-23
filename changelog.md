@@ -1,3 +1,10 @@
+# 1.1.5
+
+* added hasTranscripts in ProviderAttrs
+* amended user agent string
+* kotlin upped to 2.4.20
+* some dependencies update
+
 # 1.1.4
 
 * added CaptionSpec and getCaptionSpecs in API

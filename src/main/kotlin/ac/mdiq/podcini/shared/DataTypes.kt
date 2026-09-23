@@ -14,7 +14,8 @@ data class ProviderAttrs(
     var hasSeparateAVs: Boolean,
     var supportDownload: Boolean,
     var hasViewCount: Boolean,
-    var hasLikeCount: Boolean
+    var hasLikeCount: Boolean,
+    var hasTranscripts: Boolean
 ): Parcelable
 
 @Parcelize

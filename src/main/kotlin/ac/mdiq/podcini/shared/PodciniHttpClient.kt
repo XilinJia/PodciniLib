@@ -23,7 +23,9 @@ import java.net.Proxy
 import java.util.concurrent.TimeUnit
 import kotlin.io.encoding.Base64
 
-const val USER_AGENT: String = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0"
+//const val USER_AGENT: String = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0"
+//const val USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " + "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.3"
+const val USER_AGENT = "Mozilla/5.0 (Linux; Android 14; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36"
 
 object PodciniHttpClient {
     private val TAG: String = PodciniHttpClient::class.simpleName ?: "Anonymous"
@@ -46,7 +48,7 @@ object PodciniHttpClient {
     fun createKtorClient(): HttpClient {
         val client = HttpClient(OkHttp) {
             install(DefaultRequest) {
-                header(HttpHeaders.UserAgent, USER_AGENT)
+//                header(HttpHeaders.UserAgent, USER_AGENT)
 //                header(HttpHeaders.Accept, "application/json")    // TODO: test
                 attributes.getOrNull(CredentialsKey)?.let { creds ->
                     val user = creds.username.orEmpty()
