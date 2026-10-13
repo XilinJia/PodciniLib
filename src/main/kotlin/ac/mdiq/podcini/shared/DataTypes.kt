@@ -5,6 +5,13 @@ import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
+data class HTTPAttribs(
+    var useragent: String = "",
+    var origin: String = "",
+    var referer: String = "",
+): Parcelable
+
+@Parcelize
 data class ProviderAttrs(
     var name: String,
     var apiVersion: Int,
@@ -12,7 +19,6 @@ data class ProviderAttrs(
     var hasVideo: Boolean,
     var hasMultiQualities: Boolean,
     var hasSeparateAVs: Boolean,
-    var supportDownload: Boolean,
     var hasViewCount: Boolean,
     var hasLikeCount: Boolean,
     var hasTranscripts: Boolean
@@ -88,6 +94,18 @@ class VideoSpec(
     var url: String? = null,
     var resolution: String? = null
 ): Parcelable
+
+@Parcelize
+class MediaSpecs(
+    var audioSpecs: List<AudioSpec>? = null,
+    var videoSpecs: List<VideoSpec>? = null,
+    var muxedSpecs: List<VideoSpec>? = null,
+): Parcelable {
+    @IgnoredOnParcel
+    val isInit: Boolean
+        get() = audioSpecs != null && videoSpecs != null && muxedSpecs != null
+
+}
 
 @Parcelize
 class FeedSearchResult(

@@ -6,6 +6,7 @@ import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.HttpRedirect
 import io.ktor.client.plugins.HttpTimeout
+import io.ktor.client.plugins.HttpTimeoutConfig
 import io.ktor.client.plugins.cache.HttpCache
 import io.ktor.client.plugins.cookies.AcceptAllCookiesStorage
 import io.ktor.client.plugins.cookies.HttpCookies
@@ -18,14 +19,14 @@ import okhttp3.Connection
 import okhttp3.ConnectionPool
 import okhttp3.Credentials.basic
 import okhttp3.EventListener
+import okhttp3.Protocol
+import java.net.InetAddress
 import java.net.InetSocketAddress
 import java.net.Proxy
 import java.util.concurrent.TimeUnit
 import kotlin.io.encoding.Base64
 
-//const val USER_AGENT: String = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0"
-//const val USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " + "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.3"
-const val USER_AGENT = "Mozilla/5.0 (Linux; Android 14; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36"
+const val USER_AGENT = "Mozilla/5.0 (Linux; Android 14; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36"
 
 object PodciniHttpClient {
     private val TAG: String = PodciniHttpClient::class.simpleName ?: "Anonymous"
@@ -39,17 +40,29 @@ object PodciniHttpClient {
         return ktorClient!!
     }
 
+    val documentKtor = getKtorClient().config {
+        install(HttpCache)
+    }
+
+    val mediaKtor = getKtorClient().config {
+        expectSuccess = false
+        install(HttpTimeout) {
+            connectTimeoutMillis = 15_000
+            socketTimeoutMillis = 30_000
+            requestTimeoutMillis = HttpTimeoutConfig.INFINITE_TIMEOUT_MS
+        }
+    }
+
     fun resetClient() {
         ktorClient = null
     }
 
     val CredentialsKey = AttributeKey<HasCredentials>("Credentials")
 
-    fun createKtorClient(): HttpClient {
-        val client = HttpClient(OkHttp) {
+    private fun createKtorClient(): HttpClient {
+        val baseClient = HttpClient(OkHttp) {
+            expectSuccess = false
             install(DefaultRequest) {
-//                header(HttpHeaders.UserAgent, USER_AGENT)
-//                header(HttpHeaders.Accept, "application/json")    // TODO: test
                 attributes.getOrNull(CredentialsKey)?.let { creds ->
                     val user = creds.username.orEmpty()
                     val pass = creds.password.orEmpty()
@@ -63,27 +76,33 @@ object PodciniHttpClient {
                 socketTimeoutMillis = 30_000
                 requestTimeoutMillis = 45_000
             }
-            install(HttpCache)
             engine {
                 config {
-                    followRedirects(true)
+                    followRedirects(false)
+                    followSslRedirects(false)
                     retryOnConnectionFailure(true)
-//                     pingInterval(30, TimeUnit.SECONDS)
+                    connectTimeout(15, TimeUnit.SECONDS)
                     connectionPool(ConnectionPool(5, 2, TimeUnit.MINUTES))
-
-                    // Debugging / diagnostics
                     eventListener(object : EventListener() {
                         override fun connectionAcquired(call: Call, connection: Connection) {
-//                            Log.d(TAG, "connectionAcquired: $connection")
+                            //                            Log.d(TAG, "connectionAcquired: $connection")
                         }
                         override fun connectionReleased(call: Call, connection: Connection) {
-//                            Log.d(TAG, "connectionReleased: $connection")
+                            //                            Log.d(TAG, "connectionReleased: $connection")
                         }
                         override fun callFailed(call: Call, ioe: IOException) {
                             Log.e(TAG, "callFailed ${ioe.message}")
                         }
+                        override fun dnsEnd(call: Call, domainName: String, inetAddressList: List<InetAddress>) {
+//                            Log.d(TAG, "dns $domainName -> $inetAddressList")
+                        }
+                        override fun connectStart(call: Call, inetSocketAddress: InetSocketAddress, proxy: Proxy) {
+//                            Log.d(TAG, "connect start $addr")
+                        }
+                        override fun connectFailed(call: Call, inetSocketAddress: InetSocketAddress, proxy: Proxy, protocol: Protocol?, ioe: IOException) {
+//                            Log.d(TAG, "connect failed $addr: $ioe")
+                        }
                     })
-
                     proxyConfig?.let { proxy ->
                         if (proxy.type != Proxy.Type.DIRECT && !proxy.host.isNullOrEmpty()) {
                             proxy(Proxy(proxy.type, InetSocketAddress.createUnresolved(proxy.host, if (proxy.port > 0) proxy.port else ProxyConfig.DEFAULT_PORT)))
@@ -91,17 +110,10 @@ object PodciniHttpClient {
                                 proxyAuthenticator { _, response -> response.request.newBuilder().header("Proxy-Authorization", basic(proxy.username, proxy.password)).build() }
                         }
                     }
-                    /*
-                    Optional StrictMode socket tagging
-                    addNetworkInterceptor { chain ->
-                        TrafficStats.setThreadStatsTag(0xF00D)
-                        try { chain.proceed(chain.request()) } finally { TrafficStats.clearThreadStatsTag() }
-                    }
-                    */
                 }
             }
         }
-        return client
+        return baseClient
     }
 
     fun configProxy(proxyConfig: ProxyConfig?) {

@@ -34,13 +34,12 @@ implement API:
 	class XXXGateway: IPodciniGateway.Stub()
 
 	interface Provider {
+		HTTPAttribs httpAtribsFor(in String url);
 		int canHandleUrl(in String url);
 		@nullable EpisodeIPC buildEpisode(in String url);
 		@nullable String getEpisodeDescription(in String url);
-        List<CaptionSpec> getCaptionSpecs(in EpisodeIPC media);
-        List<AudioSpec> getAudioSpecs(in EpisodeIPC media);
-		List<VideoSpec> getVideoOnlySpecs(in EpisodeIPC media);
-		List<VideoSpec> getVideoSpecs(in EpisodeIPC media);
+		List<CaptionSpec> getCaptionSpecs(in EpisodeIPC media);
+		MediaSpecs getMediaSpecs(in EpisodeIPC media, boolean force);
 		List<String> feedsTitlesAtUrl(in String url_);
 		@nullable FeedIPC buildFeed(in String url, int index);
 		@nullable FeedIPC feedToUpdate(in String url);

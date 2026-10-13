@@ -1,3 +1,12 @@
+# 1.1.6
+
+* in API
+	* removed getAudioSpecs, getVideoOnlySpecs, getVideoSpecs and replaced with getMediaSpecs
+	* added httpAtribsFor
+* amended ktor client
+* removed supportDownload from ProviderAttrs
+* kotlin upped to 2.4.21
+
 # 1.1.5
 
 * added hasTranscripts in ProviderAttrs
@@ -36,7 +45,6 @@
 * added PeerTubeMedia in ShareType
 
 # 1.0.8
-
 
 * amended API of getEpisodes
 
