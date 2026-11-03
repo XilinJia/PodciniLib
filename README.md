@@ -39,7 +39,7 @@ implement API:
 		@nullable EpisodeIPC buildEpisode(in String url);
 		@nullable String getEpisodeDescription(in String url);
 		List<CaptionSpec> getCaptionSpecs(in EpisodeIPC media);
-		MediaSpecs getMediaSpecs(in EpisodeIPC media, boolean force);
+		MediaSpecs getMediaSpecs(in EpisodeIPC media, in List<String> preferredLocales, in boolean force);
 		List<String> feedsTitlesAtUrl(in String url_);
 		@nullable FeedIPC buildFeed(in String url, int index);
 		@nullable FeedIPC feedToUpdate(in String url);

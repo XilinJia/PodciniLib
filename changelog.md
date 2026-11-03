@@ -1,3 +1,8 @@
+# 1.1.7
+
+* changed API for getMediaSpecs
+* ktor update
+
 # 1.1.6
 
 * in API

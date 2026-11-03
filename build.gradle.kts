@@ -58,11 +58,11 @@ buildscript {
 dependencies {
     implementation("androidx.core:core-ktx:1.19.1")
 
-    implementation("io.ktor:ktor-http:3.6.0")
-    implementation("io.ktor:ktor-client-core:3.6.0")
-    implementation("io.ktor:ktor-client-okhttp:3.6.0")
-    implementation("io.ktor:ktor-client-encoding:3.6.0")
-    implementation("io.ktor:ktor-utils:3.6.0")
+    implementation("io.ktor:ktor-http:3.6.1")
+    implementation("io.ktor:ktor-client-core:3.6.1")
+    implementation("io.ktor:ktor-client-okhttp:3.6.1")
+    implementation("io.ktor:ktor-client-encoding:3.6.1")
+    implementation("io.ktor:ktor-utils:3.6.1")
 }
 
 publishing {
@@ -70,7 +70,7 @@ publishing {
         register<MavenPublication>("release") {
             groupId = "com.github.xilinjia"
             artifactId = "PodciniLib"
-            version = "1.1.6"
+            version = "1.1.7"
             afterEvaluate {
                 from(components["release"])
             }
