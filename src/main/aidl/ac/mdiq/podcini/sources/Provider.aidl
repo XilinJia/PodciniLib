@@ -13,8 +13,8 @@ interface Provider {
     int canHandleUrl(in String url);
     @nullable EpisodeIPC buildEpisode(in String url);
     @nullable String getEpisodeDescription(in String url);
-    List<CaptionSpec> getCaptionSpecs(in EpisodeIPC media);
-    MediaSpecs getMediaSpecs(in EpisodeIPC media, in List<String> preferredLocales, in boolean force);
+    List<CaptionSpec> getCaptionSpecs(in String url);
+    MediaSpecs getMediaSpecs(in String url, in List<String> preferredLocales, in boolean force);
     List<String> feedsTitlesAtUrl(in String url_);
     @nullable FeedIPC buildFeed(in String url, int index);
     @nullable FeedIPC feedToUpdate(in String url);

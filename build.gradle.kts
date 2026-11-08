@@ -1,6 +1,6 @@
 
 plugins {
-    id("com.android.library") version "9.4.1"
+    id("com.android.library") version "9.5.1"
     id("org.jetbrains.kotlin.plugin.parcelize") version "2.4.21"
     id("org.jetbrains.kotlin.plugin.serialization") version "2.4.21"
     id("maven-publish")
@@ -11,8 +11,14 @@ kotlin { jvmToolchain(21) }
 android {
     namespace = "ac.mdiq.podcinilib"
 
-    compileSdk = 37
-    buildToolsVersion = "37.0.0"
+//    compileSdk = 37
+//    buildToolsVersion = "37.0.0"
+
+    compileSdk {
+        version = release(37) {
+            minorApiLevel = 2
+        }
+    }
 
     defaultConfig {
         minSdk = 26
@@ -70,7 +76,7 @@ publishing {
         register<MavenPublication>("release") {
             groupId = "com.github.xilinjia"
             artifactId = "PodciniLib"
-            version = "1.1.7"
+            version = "1.1.8"
             afterEvaluate {
                 from(components["release"])
             }

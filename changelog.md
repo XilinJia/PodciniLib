@@ -1,3 +1,8 @@
+# 1.1.8
+
+* simplified API for getMediaSpecs and getCaptionSpecs
+* corrected error in manifest file
+
 # 1.1.7
 
 * changed API for getMediaSpecs

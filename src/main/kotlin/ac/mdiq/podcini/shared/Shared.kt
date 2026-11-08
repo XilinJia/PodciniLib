@@ -9,7 +9,7 @@ import kotlin.concurrent.atomics.AtomicLong
 import kotlin.concurrent.atomics.ExperimentalAtomicApi
 import kotlin.time.Clock
 
-const val PROVIDER_API_VERSION = 14
+const val PROVIDER_API_VERSION = 15
 
 fun nowInMillis(): Long = Clock.System.now().toEpochMilliseconds()
 
