@@ -1,3 +1,7 @@
+# 1.1.9
+
+* cleared unnecessary dependencies
+
 # 1.1.8
 
 * simplified API for getMediaSpecs and getCaptionSpecs
